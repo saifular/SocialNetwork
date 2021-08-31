@@ -266,6 +266,19 @@ router.get('/me', auth, async (req, res) => {
         }
       }
     );
+    router.delete('/education/:edu_id', auth, async (req, res) => {
+      try {
+        const profile = await Profile.findOne({ user: req.user.id });
+    
+        const removeIndex = profile.education.map(item=>item.id).indexOf(req.params.edu_id);
+        profile.education.splice(removeIndex,1);
+        await profile.save();
+        return res.status(200).json(profile);
+      } catch (error) {
+        console.error(error);
+        return res.status(500).json({ msg: 'Server error' });
+      }
+    });
 
    
 
