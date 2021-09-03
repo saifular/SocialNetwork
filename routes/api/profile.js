@@ -42,8 +42,7 @@ router.get('/me', auth, async (req, res) => {
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
       }
-  
-      // destructure the request
+
       const {
       company,
       website,
