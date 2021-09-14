@@ -2,7 +2,10 @@ import {
     REGISTER_SUCCESS,
     REGISTER_FAIL,
     USER_LOADED,
-  AUTH_ERROR
+  AUTH_ERROR,
+  LOGIN_FAIL,
+  LOGIN_SUCCESS
+  
 
   } from '../actions/types';
   
@@ -26,6 +29,7 @@ import {
       };
     case REGISTER_SUCCESS:
       case REGISTER_SUCCESS:
+        case LOGIN_SUCCESS:
           localStorage.setItem('token',payload.token);
         return {
             ...state,
@@ -35,6 +39,7 @@ import {
         }
         case REGISTER_FAIL:
           case AUTH_ERROR:
+            case LOGIN_FAIL:
         localStorage.removeItem('token');
         return {
             ...state,
