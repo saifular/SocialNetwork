@@ -27,7 +27,6 @@ import {
         loading: false,
         user: payload
       };
-    case REGISTER_SUCCESS:
       case REGISTER_SUCCESS:
         case LOGIN_SUCCESS:
           localStorage.setItem('token',payload.token);

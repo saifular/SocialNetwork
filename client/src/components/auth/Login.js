@@ -1,6 +1,10 @@
 import React, { Fragment,useState } from 'react'
 import {Link} from 'react-router-dom'
-export const Login = () => {
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import {login} from '../../actions/auth';
+ 
+ const Login = ({login}) => {
   const [fromData, setFromData] = useState({
       email:'',
       password:''
@@ -31,5 +35,10 @@ export const Login = () => {
         Don't have an account? <Link to="/register">Sing Up</Link>
       </p>
         </Fragment>
-    )
-}
+    );
+};
+Login.propTypes = {
+  login: PropTypes.func.isRequired
+
+};
+export default connect(null, { login})(Login);
