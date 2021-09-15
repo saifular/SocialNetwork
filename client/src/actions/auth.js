@@ -1,5 +1,5 @@
 import axios from'axios';
-import setAuthToken from '../utilis/setAuthToken';
+import setAuthToken from '../utils/setAuthToken';
 import { setAlert } from './alert';
 import {
   REGISTER_SUCCESS,
@@ -36,7 +36,7 @@ export const register = ({name,email,password}) => async dispatch => {
         headers:{
             'Content-Type':'application/json'
         }
-    }
+    };
     const body=JSON.stringify({name,email,password});
   try {
     const res = await axios.post('/api/user',body,config);
@@ -57,7 +57,7 @@ export const register = ({name,email,password}) => async dispatch => {
       type: REGISTER_FAIL
     });
   }
-}
+};
 
 
 
@@ -67,7 +67,7 @@ export const login = (email,password) => async dispatch => {
       headers:{
           'Content-Type':'application/json'
       }
-  }
+  };
   const body=JSON.stringify({email,password});
 try {
   const res = await axios.post('/api/auth',body,config);
@@ -88,4 +88,4 @@ try {
     type: LOGIN_FAIL
   });
 }
-}
+};

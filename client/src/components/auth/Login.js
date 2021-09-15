@@ -1,10 +1,11 @@
 import React, { Fragment,useState } from 'react'
-import {Link} from 'react-router-dom'
+import {Link,Redirect} from 'react-router-dom'
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import {login} from '../../actions/auth';
+import { connect} from 'react-redux';
+import { login } from '../../actions/auth';
+import { setAlert } from '../../actions/alert';
  
- const Login = ({login}) => {
+ const Login = ({ login,setAlert,isAuthenticated }) => {
   const [fromData, setFromData] = useState({
       email:'',
       password:''
@@ -13,8 +14,13 @@ import {login} from '../../actions/auth';
   const onChange=e=>setFromData({...fromData,[e.target.name]:e.target.value});
   const onSubmit=e=>{
       e.preventDefault();
-     console.log('success');
+      login(email,password);
+  
   }
+  if(isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
+  
   
     return (
         <Fragment>
@@ -38,7 +44,12 @@ import {login} from '../../actions/auth';
     );
 };
 Login.propTypes = {
-  login: PropTypes.func.isRequired
-
+  setAlert: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool
 };
-export default connect(null, { login})(Login);
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { setAlert,login })(Login);

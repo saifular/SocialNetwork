@@ -3,8 +3,8 @@ import {
     REGISTER_FAIL,
     USER_LOADED,
   AUTH_ERROR,
-  LOGIN_FAIL,
-  LOGIN_SUCCESS
+  LOGIN_SUCCESS,
+  LOGIN_FAIL
   
 
   } from '../actions/types';
