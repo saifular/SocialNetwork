@@ -15,6 +15,9 @@ import { setAlert } from '../../actions/alert';
   const onSubmit=e=>{
       e.preventDefault();
       login(email,password);
+      if(!fromData){
+        setAlert('Password do not match', 'danger');
+      }
   
   }
   if(isAuthenticated) {
