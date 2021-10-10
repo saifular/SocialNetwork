@@ -5,7 +5,7 @@ import { connect} from 'react-redux';
 import { login } from '../../actions/auth';
 import { setAlert } from '../../actions/alert';
  
- const Login = ({ login,setAlert,isAuthenticated }) => {
+ const Login = ({ login,isAuthenticated }) => {
   const [fromData, setFromData] = useState({
       email:'',
       password:''
@@ -15,9 +15,7 @@ import { setAlert } from '../../actions/alert';
   const onSubmit=e=>{
       e.preventDefault();
       login(email,password);
-      if(!fromData){
-        setAlert('Password do not match', 'danger');
-      }
+      
   
   }
   if(isAuthenticated) {
@@ -55,4 +53,4 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps, { setAlert,login })(Login);
+export default connect(mapStateToProps, {login })(Login);
